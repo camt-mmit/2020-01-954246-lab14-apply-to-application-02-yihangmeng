@@ -1,0 +1,41 @@
+<?php
+  $opts = getopt("h",
+    ['help']
+  );
+  if(array_key_exists('help',$opts)|| array_key_exists('h',$opts))
+  {
+	  echo"Usage: ass-01.php [options] [--] file_name\n
+		   Options:\n
+		   -h|--help print this manual.\n
+		   Arguments:\n
+		   file_name specific file name with following format.\n
+		   number_of_data\n
+		   data1\n
+		   data2\n
+		   ...\n";
+  }
+  else if(!empty($argv[1]))
+  {
+	  $file = file_get_contents($argv[1]);
+	  $line = explode("\r\n",$file);
+	  echo "Celsius Fahrenheit\n ";
+	  for($i=1;$i<count($line);$i++)
+	  {
+		  $c = $line[$i];
+		  $f = $c*1.8+32;
+		  echo $c."\t ".$f."\n";
+	  } 
+  }
+  else
+  {
+	  echo"Invalid arguments!!!\n
+           Usage the following command for help.\n
+           ass-01.php -h\n";
+  }
+Input.txt:
+5
+12.3
+50
+75.5
+0
+100

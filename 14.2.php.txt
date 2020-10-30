@@ -1,0 +1,56 @@
+<?php
+$opts = getopt("hs::",
+    ["help","step::"]
+  );
+  
+  if(array_key_exists('help',$opts)|| array_key_exists('h',$opts))
+  {
+	  echo"Usage: ass-02.php [options] [--] start end\n
+Options:\n
+-s|--step=increasing specific increasing value default 1.\n 
+'f' for Celsius to Fahrenheit.\n
+'k' for Celsius to Kelvin.\n
+default 'f'.\n
+-h|--help print this manual.\n
+Arguments:\n
+start specific starting.\n
+end specific maximum (show value <= end).\n
+invalid if start > end.\n";
+  }
+  if(array_key_exists('step',$opts)|| array_key_exists('s',$opts))
+  {
+	  $step=$opts["step"];
+	  $start =  $argv[3];
+	  $end =  $argv[4];
+	  echo "Celsius Fahrenheit\n ";
+	  for($i=$start;$i<=$end;$i=$i+$step)
+	  {
+	
+		  $f = $i*1.8+32;
+		  echo $i."\t ".$f."\n";
+	  }
+  }
+  else if(!empty($argv[1])&&!empty($argv[2]))
+  {
+	  $start =  $argv[1];
+	  $end =  $argv[2];
+	  if($start>$end)
+	  {
+		  echo"Invalid arguments!!!\n
+			   Usage the following command for help.\n
+			   ass-02.php -h\n";
+	  }
+	  echo "Celsius Fahrenheit\n ";
+	  for($i=$start;$i<=$end;$i++)
+	  {
+	
+		  $f = $i*1.8+32;
+		  echo $i."\t ".$f."\n";
+	  }
+  }
+  else
+  {
+	  echo"Invalid arguments!!!\n
+           Usage the following command for help.\n
+           ass-02.php -h\n";
+  }
